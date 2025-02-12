@@ -1,0 +1,215 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<!-- banner data -->
+
+<div class="homebanner" style="height:400px; width:100%; background-color: #359184; background-size: contain;background-position: right top ; background-repeat: no-repeat; background-image: url(static/images/social-media-icons.png);">
+  <div style=" padding: 90px 130px; margin:auto;">
+
+<h1 style="color:white;">BlogSphere: The Thought Chronicle</h1><br><br>
+
+
+<div id="health" class="section">
+  <h3 style="color:white;">Health</h3>
+  <p style="color:white;">Empower Your Well-Being: Discover Tips, Trends, and Insights for a Healthier Life.</p>
+  <p style="color:white;">Explore the Latest in Nutrition, Fitness, and Mental Wellness for a Balanced Lifestyle.</p>
+</div>
+
+<div id="science" class="section">
+  <h3 style="color:white;">Science</h3>
+  <p style="color:white;">Unravel the Wonders of the Universe: Dive into Cutting-Edge Research and Discoveries.</p>
+  <p style="color:white;">From Breakthroughs to Theories: Stay Informed on the Latest Scientific Developments.</p>
+</div>
+
+<div id="technology" class="section">
+  <h3 style="color:white;">Technology</h3>
+  <p style="color:white;">Innovate Your World: Explore the Latest in Tech Trends and Digital Advancements.</p>
+  <p style="color:white;">From Gadgets to AI: Discover How Technology is Shaping Our Future.</p>
+</div>
+
+<div id="sports" class="section">
+  <h3 style="color:white;">Sports</h3>
+  <p style="color:white;">Feel the Thrill: Get Updates, Analysis, and Highlights from the World of Sports.</p>
+  <p style="color:white;">Celebrate the Passion: Join Us for In-Depth Coverage of Your Favorite Games and Athletes.</p>
+</div>
+
+<div id="business" class="section">
+  <h3 style="color:white;">Business</h3>
+  <p style="color:white;">Navigate the Business Landscape: Insights, Strategies, and Tips for Entrepreneurs.</p>
+  <p style="color:white;">From Startups to Giants: Explore Trends and News Shaping the Business World.</p>
+</div>
+
+<div id="politics" class="section">
+  <h3 style="color:white;">Politics</h3>
+  <p style="color:white;">Stay Informed: Explore the Latest Political News, Analysis, and Insights.</p>
+  <p style="color:white;">Engage with Current Affairs: Understand the Issues that Shape Our Society.</p>
+</div>
+
+</div>
+
+ </div>
+
+
+
+ <!-- latest uploaded post -->
+<div style="padding:5%; background-color:#577783;">
+{% for post in featured_post %}
+  {% if forloop.first %}
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url({{post.blog_image.url}});background-blend-mode: overlay;background-size:cover;">
+    <div class="col-md-8 px-0">
+      <h1 class="display-4 font-italic"><a href="{% url 'blogs' post.slug %}" class="title-link"> {{post.title}} </a> </h1>
+      <p class="lead my-3">{{post.show_description | truncatewords:30}}</p>
+      <p class="lead mb-0"><a href="{% url 'blogs' post.slug %}" class="text-white font-weight-bold"> Continue reading...</a></p>
+    </div>
+</div>
+  {% endif %}
+{% endfor %}
+</div>
+<br>
+
+<!-- Featured POST -->
+ <div style="background-color:  whitesmoke;">
+ <h2 class="text-uppercase text-warning " style="letter-spacing:2px; background-color:whitesmoke;">Featured Post</h2>
+
+  <div class="row mb-2">
+    {% for post in featured_post %}
+      {% if not forloop.first %}
+    <div class="col-md-6">
+      <div class="card border-0" >
+        <div class="card-body">
+          <h3> <a href="{% url 'blogs' post.slug %}"> {{ post.title }} </a></h3>
+          <small class="mb-1 text-muted"> {{post.created_at | timesince}} ago | {{post.author}}</small>
+          <p class="card-text">{{ post.show_description | truncatewords:30 }}</p>
+        </div>
+      </div>
+    </div>
+      {% endif %}
+    {% endfor %}
+    <div class="col-md-6">
+      
+    </div>
+  </div>
+</div>
+<br>
+
+  <!-- reccent articles -->
+<div style="background-color: whitesmoke;">
+  <h2 class="text-uppercase text-warning " style="letter-spacing:2px; background-color:whitesmoke;">Recent Articles </h2>
+  <main role="main" class="container p-0">
+    <div class="row">
+      <div class="col-md-8 blog-main">
+
+        {% for post in posts %}
+        <div class="card border-0" >
+          <div class="card-body">
+            <h3><a href="{% url 'blogs' post.slug %}"> {{ post.title }} </a></h3>
+            <small class="mb-1 text-muted"> {{post.created_at | timesince}} ago | {{post.author}}</small>
+            <p class="card-text">{{ post.show_description | truncatewords:30 }}</p>
+          </div>
+        </div> 
+        {% endfor %}
+      </div>
+        <!-- /.blog-post -->
+
+      
+      <!-- /.blog-main -->
+
+
+      <aside class="col-md-4 blog-sidebar ">
+        <div class="p-3 mb-3 rounded" style="background-color:  #359184;">
+          <h4 class="font-italic text-white" style="text-align: center;">About Us</h4>
+          <p class="mb-0 text-white"> Welcome to our blog, your one-stop destination for insightful content across a variety of topics! We cover a diverse range of categories including Science, Technology, Sports, Health, and much more. Whether you're a curious learner, tech enthusiast, sports lover, or someone looking to improve their well-being, we have something for everyone.</p><br>
+
+          <p class="mb-0 text-white">Our mission is to provide engaging and informative articles that cater to your interests and inspire you to explore new ideas.</p><br>
+            
+          <p class="mb-0 text-white">At our blog, we believe in fostering a community of knowledge seekers who are eager to learn, grow, and share their experiences. So dive in, explore our categories, and stay tuned for regular updates!</p>
+        </div>
+
+
+       
+      </aside>
+
+
+    </div><!-- /.row -->
+
+  </main><!-- /.container -->
+
+</div>
+
+
+
+
+<br>
+
+
+
+
+<!----------------- follow us section----------------->
+
+
+<div style="background-color: #577783; padding: 40px 60px 30px 60px; display: flex; justify-content: space-between;">
+  
+  <!-- Follow Us Section -->
+  <div>
+    <h4 class="font-italic text-white">Follow Us</h4>
+    <p><a href="#" style="text-decoration: none; color: white;">LinkedIn</a></p>
+    <p><a href="#" style="text-decoration: none; color: white;">Twitter</a></p>
+    <p><a href="#" style="text-decoration: none; color: white;">Instagram</a></p>
+  </div>
+
+  <!-- Contact Us Section -->
+  <div>
+    <h4 class="font-italic text-white">Contact Us</h4>
+    <p><a href="#" style="text-decoration: none; color: white;">
+      <i class="fa fa-phone"></i> 999-555-6767</a>
+    </p>
+    <p><a href="#" style="text-decoration: none; color: white;">
+      &#9993; blogsphere@gmail.com</a>
+    </p>
+  </div>
+
+  <!-- Customer Support Section -->
+  <div>
+    <h4 class="font-italic text-white">Customer Support</h4>
+    <p><a href="#" style="text-decoration: none; color: white;">
+      &#9993; blogspherehelp@gmail.com</a>
+    </p>
+  </div>
+
+</div>
+
+
+
+
+
+<script>
+  const sections = document.querySelectorAll('.section');
+  let currentIndex = 0;
+
+  function showSection(index) {
+      sections.forEach((section, i) => {
+          section.style.display = i === index ? 'block' : 'none';
+      });
+  }
+
+  function startRotation() {
+      showSection(currentIndex);
+      currentIndex = (currentIndex + 1) % sections.length;
+      setTimeout(startRotation, 3000); // Change section every 3 seconds
+  }
+
+  // Start the rotation
+  startRotation();
+</script>
+
+
+
+
+
+
+
+
+
+{% endblock %}

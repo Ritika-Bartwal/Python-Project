@@ -1,0 +1,50 @@
+
+{% extends '../base/base.html' %}
+
+
+{% block content %}
+
+<div class="row">
+    <!-- left sidebar -->
+     
+
+    <!-- load leftsidebar -->
+
+    {% include './leftsidebar.html' %}
+
+
+
+    <!-- right sidebar -->
+     
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col">
+                <div class="card border-default mb-3">
+                    <div class="card-header text-center text-uppercase font-weight-bold">
+                        <h3 class="text-dark">All Categories</h3>
+                    </div>
+                    <div class="card-body text-dark">
+                        <p class="card-title text-center">{{ category_counts }}</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+                <div class="card border-default mb-3">
+                    <div class="card-header text-center text-uppercase font-weight-bold">
+                        <h3 class="text-dark">All Posts</h3>
+                    </div>
+                    <div class="card-body text-dark">
+                        <p class="card-title text-center">{{ blogs_counts }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}
